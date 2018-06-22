@@ -1,12 +1,14 @@
 # Default Postgresql config
+default['postgres']['version'] = '9.6'
+
 # postgresql.conf :
-default['postgres']['postgres_conf']['data_directory']             = '/var/lib/postgresql/9.6/main'
-default['postgres']['postgres_conf']['hba_file']                   = '/etc/postgresql/9.6/main/pg_hba.conf'
-default['postgres']['postgres_conf']['ident_file']                 = '/etc/postgresql/9.6/main/pg_ident.conf'
+default['postgres']['postgres_conf']['data_directory']             = "/var/lib/postgresql/%{version}/main"
+default['postgres']['postgres_conf']['hba_file']                   = "/etc/postgresql/%{version}/main/pg_hba.conf"
+default['postgres']['postgres_conf']['ident_file']                 = "/etc/postgresql/%{version}/main/pg_ident.conf"
 default['postgres']['postgres_conf']['unix_socket_directories']    = '/var/run/postgresql'
-default['postgres']['postgres_conf']['external_pid_file']          = '/var/run/postgresql/9.6-main.pid'
-default['postgres']['postgres_conf']['stats_temp_directory']       = '/var/run/postgresql/9.6-main.pg_stat_tmp'
-default['postgres']['postgres_conf']['cluster_name']               = '9.6/main'
+default['postgres']['postgres_conf']['external_pid_file']          = "/var/run/postgresql/%{version}-main.pid"
+default['postgres']['postgres_conf']['stats_temp_directory']       = "/var/run/postgresql/%{version}-main.pg_stat_tmp"
+default['postgres']['postgres_conf']['cluster_name']               = "%{version}/main"
 default['postgres']['postgres_conf']['listen_addresses']           = '127.0.0.1'
 default['postgres']['postgres_conf']['port']                       = 5432
 default['postgres']['postgres_conf']['ssl']                        = true

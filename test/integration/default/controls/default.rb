@@ -3,7 +3,7 @@
 title 'Test Postgresql installation'
 
 # Test Postgresql packages
-describe package('postgresql-9.6') do
+describe package('postgresql-10') do
   it { should be_installed }
 end
 
@@ -12,7 +12,7 @@ describe package('libpq-dev') do
 end
 
 # Test Postgresql config
-describe file('/etc/postgresql/9.6/main/postgresql.conf') do
+describe file('/etc/postgresql/10/main/postgresql.conf') do
   it { should exist }
   its('owner') { should eq 'postgres' }
   its('group') { should eq 'postgres' }

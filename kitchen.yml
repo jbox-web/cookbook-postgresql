@@ -22,6 +22,8 @@ suites:
       - recipe[postgresql::pgbouncer]
       - recipe[postgresql::autopostgresqlbackup]
     attributes:
+      postgres:
+        version: 10
       autopostgresqlbackup:
         config:
           mailcontent: quiet
