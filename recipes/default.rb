@@ -46,12 +46,10 @@ template "/etc/postgresql/#{version}/main/postgresql.conf" do
 end
 
 execute "pg_dropcluster --stop #{version} main" do
-  command "pg_dropcluster --stop #{version} main"
   only_if { !Dir.exist?(data_dir) }
 end
 
 execute "pg_createcluster -d #{data_dir} #{version} main" do
-  command "pg_createcluster -d #{data_dir} #{version} main"
   only_if { !Dir.exist?(data_dir) }
 end
 
