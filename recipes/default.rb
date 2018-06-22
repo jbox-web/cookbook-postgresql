@@ -1,3 +1,6 @@
+version  = node[:postgres][:version]
+data_dir = node[:postgres][:postgres_conf][:data_directory] % { version: version }
+
 # Install GPG
 package 'dirmngr'
 
@@ -6,16 +9,14 @@ package 'build-essential'
 
 # Install Postgresql repository
 apt_repository 'stretch-postgresql-binary' do
-  version = node[:postgres][:version].to_s == '10' ? 'main' : node[:postgres][:version]
-
   uri          'http://apt.postgresql.org/pub/repos/apt'
   key          'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
-  components   [version]
+  components   [(version.to_s == '10' ? 'main' : version)]
   distribution 'stretch-pgdg'
 end
 
 # Install Postgresql
-package "postgresql-#{node[:postgres][:version]}"
+package "postgresql-#{version}"
 
 # Install Postgresql dev package
 package 'libpq-dev'
@@ -24,7 +25,7 @@ package 'libpq-dev'
 chef_gem 'pg'
 
 # Copy original Postgresql config
-cookbook_file "/etc/postgresql/#{node[:postgres][:version]}/main/postgresql.conf.orig" do
+cookbook_file "/etc/postgresql/#{version}/main/postgresql.conf.orig" do
   source 'postgresql.conf'
   owner  'postgres'
   group  'postgres'
@@ -33,41 +34,41 @@ end
 # Setup Postgresql data directory
 service 'postgresql' do
   action  :stop
-  only_if { !Dir.exist?(node[:postgres][:postgres_conf][:data_directory]) }
+  only_if { !Dir.exist?(data_dir) }
 end
 
-template "/etc/postgresql/#{node[:postgres][:version]}/main/postgresql.conf" do
+template "/etc/postgresql/#{version}/main/postgresql.conf" do
   source    'postgresql.conf.erb'
   variables config: node[:postgres][:postgres_conf]
   owner     'postgres'
   group     'postgres'
-  only_if   { !Dir.exist?(node[:postgres][:postgres_conf][:data_directory]) }
+  only_if   { !Dir.exist?(data_dir) }
 end
 
-execute "pg_dropcluster --stop #{node[:postgres][:version]} main" do
-  command "pg_dropcluster --stop #{node[:postgres][:version]} main"
-  only_if { !Dir.exist?(node[:postgres][:postgres_conf][:data_directory]) }
+execute "pg_dropcluster --stop #{version} main" do
+  command "pg_dropcluster --stop #{version} main"
+  only_if { !Dir.exist?(data_dir) }
 end
 
-execute "pg_createcluster -d #{node[:postgres][:postgres_conf][:data_directory]} #{node[:postgres][:version]} main" do
-  command "pg_createcluster -d #{node[:postgres][:postgres_conf][:data_directory]} #{node[:postgres][:version]} main"
-  only_if { !Dir.exist?(node[:postgres][:postgres_conf][:data_directory]) }
+execute "pg_createcluster -d #{data_dir} #{version} main" do
+  command "pg_createcluster -d #{data_dir} #{version} main"
+  only_if { !Dir.exist?(data_dir) }
 end
 
 service 'postgresql' do
   action  :start
-  only_if { !Dir.exist?(node[:postgres][:postgres_conf][:data_directory]) }
+  only_if { !Dir.exist?(data_dir) }
 end
 
 # Install Postgresql config
-template "/etc/postgresql/#{node[:postgres][:version]}/main/postgresql.conf" do
+template "/etc/postgresql/#{version}/main/postgresql.conf" do
   source    'postgresql.conf.erb'
-  variables config: node[:postgres][:postgres_conf], version: node[:postgres][:version]
+  variables config: node[:postgres][:postgres_conf], version: version
   owner     'postgres'
   group     'postgres'
 end
 
-template "/etc/postgresql/#{node[:postgres][:version]}/main/pg_hba.conf" do
+template "/etc/postgresql/#{version}/main/pg_hba.conf" do
   source    'pg_hba.conf.erb'
   variables config: node[:postgres][:pg_hba]
   owner     'postgres'
@@ -77,6 +78,6 @@ end
 
 # Restart Postgresql when config is changed
 service 'postgresql' do
-  subscribes :restart, "template[/etc/postgresql/#{node[:postgres][:version]}/main/postgresql.conf]", :immediately
-  subscribes :restart, "template[/etc/postgresql/#{node[:postgres][:version]}/main/pg_hba.conf]", :immediately
+  subscribes :restart, "template[/etc/postgresql/#{version}/main/postgresql.conf]", :immediately
+  subscribes :restart, "template[/etc/postgresql/#{version}/main/pg_hba.conf]", :immediately
 end
