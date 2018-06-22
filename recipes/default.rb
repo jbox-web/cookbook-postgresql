@@ -18,9 +18,6 @@ package 'postgresql-9.6'
 # Install Postgresql dev package
 package 'libpq-dev'
 
-# Install PGBouncer
-package 'pgbouncer'
-
 # Install Ruby pg gem to create DB
 chef_gem 'pg'
 
@@ -80,26 +77,4 @@ end
 service 'postgresql' do
   subscribes :restart, 'template[/etc/postgresql/9.6/main/postgresql.conf]', :immediately
   subscribes :restart, 'template[/etc/postgresql/9.6/main/pg_hba.conf]', :immediately
-end
-
-# Copy original PGBouncer config
-cookbook_file '/etc/pgbouncer/pgbouncer.ini.orig' do
-  source 'pgbouncer.ini'
-  owner  'postgres'
-  group  'postgres'
-  mode   '0640'
-end
-
-# Install PGBouncer config
-template '/etc/pgbouncer/pgbouncer.ini' do
-  source    'pgbouncer.ini.erb'
-  variables config: node[:pgbouncer][:config]
-  owner     'postgres'
-  group     'postgres'
-  mode      '0640'
-end
-
-# Restart PGBouncer when config is changed
-service 'pgbouncer' do
-  subscribes :restart, 'template[/etc/pgbouncer/pgbouncer.ini]', :delayed
 end

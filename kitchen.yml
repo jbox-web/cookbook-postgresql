@@ -19,6 +19,7 @@ suites:
   - name: default
     run_list:
       - recipe[postgresql]
+      - recipe[postgresql::pgbouncer]
       - recipe[postgresql::autopostgresqlbackup]
     attributes:
       autopostgresqlbackup:
