@@ -49,7 +49,7 @@ execute "pg_dropcluster --stop #{version} main" do
   only_if { !Dir.exist?(data_dir) }
 end
 
-execute "pg_createcluster -d #{data_dir} #{version} main" do
+execute "pg_createcluster -e UTF8 --locale en_US.UTF-8 -d #{data_dir} #{version} main" do
   notifies :restart, 'service[postgresql]', :immediately
   only_if { !Dir.exist?(data_dir) }
 end
