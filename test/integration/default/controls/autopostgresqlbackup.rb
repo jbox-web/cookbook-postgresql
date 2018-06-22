@@ -2,6 +2,10 @@
 
 title 'Test AutoPostgreSQLBackup installation'
 
+describe package('autopostgresqlbackup') do
+  it { should be_installed }
+end
+
 describe file('/usr/sbin/autopostgresqlbackup') do
   it { should exist }
   its('owner') { should eq 'root' }

@@ -14,10 +14,6 @@ describe package('pgbouncer') do
   it { should be_installed }
 end
 
-describe package('autopostgresqlbackup') do
-  it { should be_installed }
-end
-
 describe file('/etc/postgresql/9.6/main/postgresql.conf') do
   it { should exist }
   its('owner') { should eq 'postgres' }
