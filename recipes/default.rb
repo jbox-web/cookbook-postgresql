@@ -50,11 +50,7 @@ execute "pg_dropcluster --stop #{version} main" do
 end
 
 execute "pg_createcluster -d #{data_dir} #{version} main" do
-  only_if { !Dir.exist?(data_dir) }
-end
-
-service 'postgresql' do
-  action  :start
+  notifies :restart, 'service[postgresql]', :immediately
   only_if { !Dir.exist?(data_dir) }
 end
 

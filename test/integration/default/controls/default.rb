@@ -19,7 +19,7 @@ describe file('/etc/postgresql/10/main/postgresql.conf') do
   its('mode')  { should cmp '0644' }
 end
 
-describe directory('/var/lib/postgresql/10/main') do
+describe directory('/data/postgresql/10/main') do
   it { should exist }
   its('owner') { should eq 'postgres' }
   its('group') { should eq 'postgres' }
