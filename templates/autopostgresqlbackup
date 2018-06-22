@@ -13,7 +13,7 @@
 #
 # The following setting has been added to workraound this issue.
 # (if it is set to empty, 'su' usage will be disabled)
-SU_USERNAME=postgres
+SU_USERNAME=<%= @config[:su_username] %>
 
 #=====================================================================
 # Set the following variables to your system needs
@@ -21,7 +21,7 @@ SU_USERNAME=postgres
 #=====================================================================
 
 # Username to access the PostgreSQL server e.g. dbuser
-USERNAME=postgres
+USERNAME=<%= @config[:username] %>
 
 # Password
 # create a file $HOME/.pgpass containing a line like this
