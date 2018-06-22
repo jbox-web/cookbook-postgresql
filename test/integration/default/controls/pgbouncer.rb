@@ -2,10 +2,12 @@
 
 title 'Test PGBouncer installation'
 
+# Test PGBouncer package
 describe package('pgbouncer') do
   it { should be_installed }
 end
 
+# Test PGBouncer service
 describe service('pgbouncer') do
   it { should be_installed }
   it { should be_enabled }

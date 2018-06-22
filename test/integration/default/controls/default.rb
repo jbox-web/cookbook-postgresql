@@ -2,6 +2,7 @@
 
 title 'Test Postgresql installation'
 
+# Test Postgresql packages
 describe package('postgresql-9.6') do
   it { should be_installed }
 end
@@ -10,6 +11,7 @@ describe package('libpq-dev') do
   it { should be_installed }
 end
 
+# Test Postgresql config
 describe file('/etc/postgresql/9.6/main/postgresql.conf') do
   it { should exist }
   its('owner') { should eq 'postgres' }
@@ -17,6 +19,7 @@ describe file('/etc/postgresql/9.6/main/postgresql.conf') do
   its('mode')  { should cmp '0644' }
 end
 
+# Test Postgresql service
 describe service('postgresql') do
   it { should be_installed }
   it { should be_enabled }
