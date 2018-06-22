@@ -1,4 +1,5 @@
-# Default configuration for postgresql.conf
+# Default Postgresql config
+# postgresql.conf :
 default['postgres']['postgres_conf']['data_directory']             = '/var/lib/postgresql/9.6/main'
 default['postgres']['postgres_conf']['hba_file']                   = '/etc/postgresql/9.6/main/pg_hba.conf'
 default['postgres']['postgres_conf']['ident_file']                 = '/etc/postgresql/9.6/main/pg_ident.conf'
@@ -24,7 +25,7 @@ default['postgres']['postgres_conf']['lc_numeric']                 = 'C.UTF-8'
 default['postgres']['postgres_conf']['lc_time']                    = 'C.UTF-8'
 default['postgres']['postgres_conf']['default_text_search_config'] = 'pg_catalog.english'
 
-# Default configuration for pg_hba.conf
+# pg_hba.conf :
 default['postgres']['pg_hba'] = [
   ['local', 'all', 'postgres', '',             'trust'],
   ['local', 'all', 'all',      '',             'peer'],
@@ -32,7 +33,7 @@ default['postgres']['pg_hba'] = [
   ['host',  'all', 'all',      '::1/128',      'md5'],
 ]
 
-# Default configuration for PGBouncer
+# Default PGBouncer config
 default['pgbouncer']['config']['databases']                       = {}
 default['pgbouncer']['config']['pgbouncer']                       = {}
 default['pgbouncer']['config']['pgbouncer']['logfile']            = '/var/log/postgresql/pgbouncer.log'
@@ -47,7 +48,7 @@ default['pgbouncer']['config']['pgbouncer']['server_reset_query'] = 'DISCARD ALL
 default['pgbouncer']['config']['pgbouncer']['max_client_conn']    = 100
 default['pgbouncer']['config']['pgbouncer']['default_pool_size']  = 20
 
-# Default configuration for AutoPostgreSQLBackup
+# Default AutoPostgreSQLBackup config
 default['autopostgresqlbackup']['config']['su_username']           = 'postgres'
 default['autopostgresqlbackup']['config']['username']              = 'postgres'
 default['autopostgresqlbackup']['config']['dbhost']                = 'localhost'
