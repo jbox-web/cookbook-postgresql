@@ -1,0 +1,6 @@
+name             'postgresql'
+maintainer       'Nicolas Rodriguez'
+maintainer_email 'nicoladmin@free.fr'
+license          'MIT'
+description      'Installs/Configures Postgresql'
+version          '1.0.0'
