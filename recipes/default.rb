@@ -45,13 +45,16 @@ template "/etc/postgresql/#{version}/main/postgresql.conf" do
   only_if   { !Dir.exist?(data_dir) }
 end
 
-execute "pg_dropcluster --stop #{version} main" do
-  only_if { !Dir.exist?(data_dir) }
+postgres_cluster "Remove cluster '#{version}'" do
+  data_dir data_dir
+  version  version.to_s
+  action   :remove
 end
 
-execute "pg_createcluster -e UTF8 --locale en_US.UTF-8 -d #{data_dir} #{version} main" do
-  notifies :restart, 'service[postgresql]', :immediately
-  only_if { !Dir.exist?(data_dir) }
+postgres_cluster "Create cluster '#{version}' in '#{data_dir}'" do
+  data_dir data_dir
+  version  version.to_s
+  action   :install
 end
 
 # Install Postgresql config
