@@ -73,6 +73,16 @@ template "/etc/postgresql/#{version}/main/pg_hba.conf" do
   mode      '0640'
 end
 
+# Configure logrotate
+cookbook_file '/etc/logrotate.d/postgresql-common' do
+  source 'logrotate/postgresql-common'
+end
+
+# Create Postgresql log archive dir
+directory '/var/log/OLD_LOGS/postgresql' do
+  recursive true
+end
+
 # Restart Postgresql when config is changed
 service 'postgresql' do
   subscribes :restart, "template[/etc/postgresql/#{version}/main/postgresql.conf]", :immediately
