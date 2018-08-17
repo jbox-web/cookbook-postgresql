@@ -2,7 +2,7 @@
 #
 # This file is managed by Chef.
 
-<%- exclude = ['dynamic_shared_memory_type', 'shared_buffers', 'effective_cache_size', 'work_mem', 'maintenance_work_mem', 'min_wal_size', 'max_wal_size', 'wal_buffers'] -%>
+<%- exclude = ['dynamic_shared_memory_type', 'shared_buffers', 'effective_cache_size', 'work_mem', 'maintenance_work_mem', 'min_wal_size', 'max_wal_size', 'wal_buffers', 'pg_stat_statements.track'] -%>
 <%- @config.each do |key, value| -%>
 <%- if exclude.include?(key) -%>
 <%= key %> = <%= value %>
