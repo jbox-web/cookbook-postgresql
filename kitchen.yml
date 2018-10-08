@@ -14,7 +14,8 @@ provisioner:
 
 verifier:
   name: inspec
-  reporter: progress
+  reporter:
+    - progress
 
 platforms:
   - name: debian-stretch
