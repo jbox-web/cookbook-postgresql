@@ -28,7 +28,6 @@ suites:
       - recipe[postgresql::autopostgresqlbackup]
     attributes:
       postgres:
-        version: 10
         postgres_conf:
           data_directory: '/data/postgresql/10/main'
       autopostgresqlbackup:
