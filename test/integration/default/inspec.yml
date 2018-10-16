@@ -1,10 +1,10 @@
 name: postgresql
 title: Postgresql Profile
+summary: Postgresql Compliance Profile
 maintainer: Nicolas Rodriguez
 copyright: Nicolas Rodriguez
 copyright_email: nicoladmin@free.fr
 license: MIT
-summary: Postgresql Compliance Profile
 version: 1.0.0
 supports:
 - os-family: linux
