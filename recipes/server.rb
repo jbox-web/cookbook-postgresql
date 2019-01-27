@@ -5,11 +5,14 @@ include_recipe 'postgresql'
 version  = node[:postgres][:version]
 data_dir = node[:postgres][:postgres_conf][:data_directory] % { version: version }
 
-# Install Postgresql
-package "postgresql-#{version}"
-
-# Install Postgresql dev package
-package 'libpq-dev'
+# Install packages
+# libpq-dev and build-essential are here
+# to build pg gem to be used in this recipe
+package [
+  "postgresql-#{version}",
+  'libpq-dev',
+  'build-essential',
+]
 
 # Install Ruby pg gem to create DB
 chef_gem 'pg'

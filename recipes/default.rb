@@ -3,9 +3,6 @@ version = node[:postgres][:version]
 # Install GPG
 package 'dirmngr'
 
-# Install compilation tools to build pg gem
-package 'build-essential'
-
 # Install Postgresql repository
 apt_repository 'stretch-postgresql-binary' do
   uri          'http://apt.postgresql.org/pub/repos/apt'
