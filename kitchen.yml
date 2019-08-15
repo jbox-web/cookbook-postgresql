@@ -20,6 +20,7 @@ verifier:
 
 platforms:
   - name: debian-stretch
+  - name: debian-buster
 
 suites:
   - name: default

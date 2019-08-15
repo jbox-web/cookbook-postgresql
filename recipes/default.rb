@@ -1,7 +1,8 @@
 version = node[:postgres][:version]
 
 DISTROS = {
-  '9' => 'stretch',
+  '9'  => 'stretch',
+  '10' => 'buster',
 }
 
 # Install GPG

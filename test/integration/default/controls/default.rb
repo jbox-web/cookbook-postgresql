@@ -3,7 +3,8 @@
 title 'Test Postgresql installation'
 
 DISTROS = {
-  '9.9' => 'stretch',
+  '9.9'  => 'stretch',
+  '10.0' => 'buster',
 }
 
 # Test Postgresql packages
