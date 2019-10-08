@@ -3,8 +3,8 @@
 title 'Test Postgresql installation'
 
 DISTROS = {
-  '9.9'  => 'stretch',
-  '10.0' => 'buster',
+  '9'  => 'stretch',
+  '10' => 'buster',
 }
 
 # Test Postgresql packages
@@ -16,7 +16,7 @@ describe package('libpq-dev') do
   it { should be_installed }
 end
 
-distro = DISTROS[os[:release]]
+distro = DISTROS[os[:release].to_s.split('.').first]
 
 describe file('/etc/apt/sources.list.d/postgresql-binary.list') do
   it { should exist }
