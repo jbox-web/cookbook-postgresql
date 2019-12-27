@@ -20,7 +20,7 @@ distro = DISTROS[os[:release].to_s.split('.').first]
 
 describe file('/etc/apt/sources.list.d/postgresql-binary.list') do
   it { should exist }
-  its('content') { should include %Q(deb      "http://apt.postgresql.org/pub/repos/apt" #{distro}-pgdg main)  }
+  its('content') { should include %Q(deb      http://apt.postgresql.org/pub/repos/apt #{distro}-pgdg main)  }
 end
 
 # Test Postgresql config
