@@ -7,16 +7,23 @@ DISTROS = {
   '10' => 'buster',
 }
 
+distro = DISTROS[os[:release].to_s.split('.').first]
+
 # Test Postgresql packages
 describe package('postgresql-10') do
   it { should be_installed }
+
+  case distro
+  when 'stretch'
+    its('version') { should eq '10.13-1.pgdg90+1' }
+  when 'buster'
+    its('version') { should eq '10.13-1.pgdg100+1' }
+  end
 end
 
 describe package('libpq-dev') do
   it { should be_installed }
 end
-
-distro = DISTROS[os[:release].to_s.split('.').first]
 
 describe file('/etc/apt/sources.list.d/postgresql-binary.list') do
   it { should exist }
