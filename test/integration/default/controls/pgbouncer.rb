@@ -2,9 +2,23 @@
 
 title 'Test PGBouncer installation'
 
+DISTROS = {
+  '9'  => 'stretch',
+  '10' => 'buster',
+}
+
+distro = DISTROS[os[:release].to_s.split('.').first]
+
 # Test PGBouncer package
 describe package('pgbouncer') do
   it { should be_installed }
+
+  case distro
+  when 'stretch'
+    its('version') { should eq '1.13.0-1.pgdg90+1' }
+  when 'buster'
+    its('version') { should eq '1.13.0-1.pgdg100+1' }
+  end
 end
 
 # Test PGBouncer service
