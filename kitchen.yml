@@ -5,7 +5,11 @@ driver:
   privileged: true
   run_command: /lib/systemd/systemd
   provision_command:
-    - apt-get update && apt-get install -y locales
+    - apt-get update -qq
+    - apt-get upgrade -y
+    - apt-get install -y net-tools
+
+    - apt-get install -y locales
     - echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
     - locale-gen en_US.UTF-8
 
@@ -20,7 +24,13 @@ verifier:
 
 platforms:
   - name: debian-stretch
+    driver_config:
+      image: debian:stretch-slim
+      platform: debian
   - name: debian-buster
+    driver_config:
+      image: debian:buster-slim
+      platform: debian
 
 suites:
   - name: default
