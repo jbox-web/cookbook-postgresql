@@ -41,7 +41,7 @@ suites:
     attributes:
       postgres:
         postgres_conf:
-          data_directory: '/data/postgresql/10/main'
+          data_directory: '/data/postgresql/11/main'
       autopostgresqlbackup:
         config:
           mailcontent: quiet

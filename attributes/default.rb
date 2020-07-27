@@ -1,5 +1,5 @@
 # Default Postgresql config
-default['postgres']['version'] = '10'
+default['postgres']['version'] = '11'
 
 # postgresql.conf :
 default['postgres']['postgres_conf']['data_directory']             = "/var/lib/postgresql/%{version}/main"
