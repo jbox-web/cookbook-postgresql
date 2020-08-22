@@ -15,9 +15,9 @@ describe package('pgbouncer') do
 
   case distro
   when 'stretch'
-    its('version') { should eq '1.13.0-1.pgdg90+1' }
+    its('version') { should eq '1.14.0-1.pgdg90+1' }
   when 'buster'
-    its('version') { should eq '1.13.0-1.pgdg100+1' }
+    its('version') { should eq '1.14.0-1.pgdg100+1' }
   end
 end
 
