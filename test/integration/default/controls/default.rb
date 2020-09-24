@@ -10,14 +10,14 @@ DISTROS = {
 distro = DISTROS[os[:release].to_s.split('.').first]
 
 # Test Postgresql packages
-describe package('postgresql-11') do
+describe package('postgresql-13') do
   it { should be_installed }
 
   case distro
   when 'stretch'
-    its('version') { should eq '11.9-1.pgdg90+1' }
+    its('version') { should eq '13.0-1.pgdg90+1' }
   when 'buster'
-    its('version') { should eq '11.9-1.pgdg100+1' }
+    its('version') { should eq '13.0-1.pgdg100+1' }
   end
 end
 
@@ -31,14 +31,14 @@ describe file('/etc/apt/sources.list.d/postgresql-binary.list') do
 end
 
 # Test Postgresql config
-describe file('/etc/postgresql/11/main/postgresql.conf') do
+describe file('/etc/postgresql/13/main/postgresql.conf') do
   it { should exist }
   its('owner') { should eq 'postgres' }
   its('group') { should eq 'postgres' }
   its('mode')  { should cmp '0644' }
 end
 
-describe directory('/data/postgresql/11/main') do
+describe directory('/data/postgresql/13/main') do
   it { should exist }
   its('owner') { should eq 'postgres' }
   its('group') { should eq 'postgres' }
