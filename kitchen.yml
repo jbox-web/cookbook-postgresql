@@ -35,9 +35,9 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[postgresql::server]
-      - recipe[postgresql::pgbouncer]
-      - recipe[postgresql::autopostgresqlbackup]
+      - recipe[jbox-postgresql::server]
+      - recipe[jbox-postgresql::pgbouncer]
+      - recipe[jbox-postgresql::autopostgresqlbackup]
     attributes:
       postgres:
         version: '13'

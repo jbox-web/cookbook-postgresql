@@ -1,7 +1,7 @@
 DEPENDENCIES
-  postgresql
+  jbox-postgresql
     path: .
     metadata: true
 
 GRAPH
-  postgresql (1.0.0)
+  jbox-postgresql (1.0.0)

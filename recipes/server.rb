@@ -1,5 +1,5 @@
 # Include main recipe (install apt repo)
-include_recipe 'postgresql'
+include_recipe 'jbox-postgresql'
 
 # Get current version
 version  = node[:postgres][:version]
