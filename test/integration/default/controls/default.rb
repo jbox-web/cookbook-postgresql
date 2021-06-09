@@ -15,9 +15,9 @@ describe package('postgresql-13') do
 
   case distro
   when 'stretch'
-    its('version') { should eq '13.2-1.pgdg90+1' }
+    its('version') { should eq '13.3-1.pgdg90+1' }
   when 'buster'
-    its('version') { should eq '13.2-1.pgdg100+1' }
+    its('version') { should eq '13.3-1.pgdg100+1' }
   end
 end
 
