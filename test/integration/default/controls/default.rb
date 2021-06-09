@@ -2,23 +2,14 @@
 
 title 'Test Postgresql installation'
 
-DISTROS = {
-  '9'  => 'stretch',
-  '10' => 'buster',
-}
-
-distro = DISTROS[os[:release].to_s.split('.').first]
+# Fetch Inspec inputs
+debian_release   = input('debian_release')
+postgres_version = input('postgres_version')
 
 # Test Postgresql packages
 describe package('postgresql-13') do
   it { should be_installed }
-
-  case distro
-  when 'stretch'
-    its('version') { should eq '13.3-1.pgdg90+1' }
-  when 'buster'
-    its('version') { should eq '13.3-1.pgdg100+1' }
-  end
+  its('version') { should eq postgres_version }
 end
 
 describe package('libpq-dev') do
@@ -27,7 +18,7 @@ end
 
 describe file('/etc/apt/sources.list.d/postgresql-binary.list') do
   it { should exist }
-  its('content') { should include %Q(deb      http://apt.postgresql.org/pub/repos/apt #{distro}-pgdg main)  }
+  its('content') { should include %Q(deb      http://apt.postgresql.org/pub/repos/apt #{debian_release}-pgdg main)  }
 end
 
 # Test Postgresql config

@@ -2,23 +2,14 @@
 
 title 'Test PGBouncer installation'
 
-DISTROS = {
-  '9'  => 'stretch',
-  '10' => 'buster',
-}
-
-distro = DISTROS[os[:release].to_s.split('.').first]
+# Fetch Inspec inputs
+debian_release    = input('debian_release')
+pgbouncer_version = input('pgbouncer_version')
 
 # Test PGBouncer package
 describe package('pgbouncer') do
   it { should be_installed }
-
-  case distro
-  when 'stretch'
-    its('version') { should eq '1.15.0-1.pgdg90+1' }
-  when 'buster'
-    its('version') { should eq '1.15.0-1.pgdg100+1' }
-  end
+  its('version') { should eq pgbouncer_version }
 end
 
 # Test PGBouncer service
