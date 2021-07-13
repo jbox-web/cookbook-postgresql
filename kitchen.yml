@@ -23,16 +23,6 @@ verifier:
     - progress
 
 platforms:
-  - name: debian-stretch
-    driver_config:
-      image: debian:stretch-slim
-      platform: debian
-    verifier:
-      inputs:
-        debian_release: stretch
-        postgres_version: 13.3-1.pgdg90+1
-        pgbouncer_version: 1.15.0-1.pgdg90+1
-
   - name: debian-buster
     driver_config:
       image: debian:buster-slim
