@@ -1,5 +1,6 @@
 resource_name :postgres_user
 provides :postgres_user
+unified_mode true
 
 property :user,       String, name_property: true
 property :rights,     String, default: '-SDRw'

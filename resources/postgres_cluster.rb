@@ -1,5 +1,6 @@
 resource_name :postgres_cluster
 provides :postgres_cluster
+unified_mode true
 
 property :data_dir, String, name_property: true
 property :version,  String, name_property: true

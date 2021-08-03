@@ -1,5 +1,6 @@
 resource_name :postgres_db
 provides :postgres_db
+unified_mode true
 
 property :name,       String, name_property: true
 property :user,       String, name_property: true
