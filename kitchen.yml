@@ -30,8 +30,8 @@ platforms:
     verifier:
       inputs:
         debian_release: buster
-        postgres_version: 13.3-1.pgdg100+1
-        pgbouncer_version: 1.15.0-1.pgdg100+1
+        postgres_version: 13.4-1.pgdg100+1
+        pgbouncer_version: 1.16.0-1.pgdg100+1
 
 suites:
   - name: default
