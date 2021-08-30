@@ -23,6 +23,16 @@ verifier:
     - progress
 
 platforms:
+  - name: debian-bullseye
+    driver_config:
+      image: debian:bullseye-slim
+      platform: debian
+    verifier:
+      inputs:
+        debian_release: bullseye
+        postgres_version: 13.4-1.pgdg110+1
+        pgbouncer_version: 1.16.0-1.pgdg110+1
+
   - name: debian-buster
     driver_config:
       image: debian:buster-slim

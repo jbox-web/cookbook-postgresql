@@ -1,8 +1,8 @@
 version = node[:postgres][:version]
 
 DISTROS = {
-  '9'  => 'stretch',
   '10' => 'buster',
+  '11' => 'bullseye',
 }
 
 # Get distribution name
