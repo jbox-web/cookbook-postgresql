@@ -38,12 +38,8 @@ suites:
     run_list:
       - recipe[jbox-postgresql::server]
       - recipe[jbox-postgresql::pgbouncer]
-      - recipe[jbox-postgresql::autopostgresqlbackup]
     attributes:
       postgres:
         version: '13'
         postgres_conf:
           data_directory: '/data/postgresql/13/main'
-      autopostgresqlbackup:
-        config:
-          mailcontent: quiet
