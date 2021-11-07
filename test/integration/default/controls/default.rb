@@ -7,7 +7,7 @@ debian_release   = input('debian_release')
 postgres_version = input('postgres_version')
 
 # Test Postgresql packages
-describe package('postgresql-13') do
+describe package('postgresql-14') do
   it { should be_installed }
   its('version') { should eq postgres_version }
 end
@@ -22,14 +22,14 @@ describe file('/etc/apt/sources.list.d/postgresql-binary.list') do
 end
 
 # Test Postgresql config
-describe file('/etc/postgresql/13/main/postgresql.conf') do
+describe file('/etc/postgresql/14/main/postgresql.conf') do
   it { should exist }
   its('owner') { should eq 'postgres' }
   its('group') { should eq 'postgres' }
   its('mode')  { should cmp '0644' }
 end
 
-describe directory('/data/postgresql/13/main') do
+describe directory('/data/postgresql/14/main') do
   it { should exist }
   its('owner') { should eq 'postgres' }
   its('group') { should eq 'postgres' }
