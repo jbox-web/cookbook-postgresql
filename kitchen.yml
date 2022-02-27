@@ -48,8 +48,15 @@ suites:
     run_list:
       - recipe[jbox-postgresql::server]
       - recipe[jbox-postgresql::pgbouncer]
+      # - recipe[jbox-postgresql::postgres_exporter]
+      # - recipe[jbox-postgresql::pgbouncer_exporter]
     attributes:
       postgres:
         version: '14'
         postgres_conf:
           data_directory: '/data/postgresql/14/main'
+      # prometheus_exporters:
+      #   postgres:
+      #     install: true
+      #   pgbouncer:
+      #     install: true

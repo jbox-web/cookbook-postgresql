@@ -49,3 +49,15 @@ default['pgbouncer']['config']['pgbouncer']['pool_mode']          = 'session'
 default['pgbouncer']['config']['pgbouncer']['server_reset_query'] = 'DISCARD ALL'
 default['pgbouncer']['config']['pgbouncer']['max_client_conn']    = 100
 default['pgbouncer']['config']['pgbouncer']['default_pool_size']  = 20
+
+# Prometheus postgres_exporter
+default['prometheus_exporters']['postgres']['install']  = false
+default['prometheus_exporters']['postgres']['version']  = '0.10.1'
+default['prometheus_exporters']['postgres']['url']      = "https://github.com/prometheus-community/postgres_exporter/releases/download/v#{node['prometheus_exporters']['postgres']['version']}/postgres_exporter-#{node['prometheus_exporters']['postgres']['version']}.linux-amd64.tar.gz"
+default['prometheus_exporters']['postgres']['checksum'] = '5344afe06a90c3cbd52803d56031bfcbcff78b56448e16c9228697ea0a2577b7'
+
+# Prometheus pgbouncer_exporter
+default['prometheus_exporters']['pgbouncer']['install']  = false
+default['prometheus_exporters']['pgbouncer']['version']  = '0.4.1'
+default['prometheus_exporters']['pgbouncer']['url']      = "https://github.com/prometheus-community/pgbouncer_exporter/releases/download/v#{node['prometheus_exporters']['pgbouncer']['version']}/pgbouncer_exporter-#{node['prometheus_exporters']['pgbouncer']['version']}.linux-amd64.tar.gz"
+default['prometheus_exporters']['pgbouncer']['checksum'] = '29bb67a000d30d1e677865c2cdc3957a2ad4ece9bf00dd8a97b500f25f7f0756'
