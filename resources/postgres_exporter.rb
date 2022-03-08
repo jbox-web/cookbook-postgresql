@@ -1,5 +1,6 @@
 resource_name :postgres_exporter
 provides :postgres_exporter
+unified_mode true
 
 property :auto_discover_databases,  [true, false], default: false
 property :constant_labels,          String

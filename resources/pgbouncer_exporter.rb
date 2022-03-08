@@ -1,5 +1,6 @@
 resource_name :pgbouncer_exporter
 provides :pgbouncer_exporter
+unified_mode true
 
 property :instance_name,          String, name_property: true
 property :user,                   String, default: 'pgbouncer_exporter'
