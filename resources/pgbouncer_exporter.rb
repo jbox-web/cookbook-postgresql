@@ -64,7 +64,7 @@ action :install do
   systemd_unit "#{service_name}.service" do
     content(
       'Unit' => {
-        'Description' => 'Systemd unit for Prometheus PostgreSQL Exporter',
+        'Description' => 'Systemd unit for Prometheus PGBouncer Exporter',
         'After'       => 'network-online.target',
       },
       'Service' => {
