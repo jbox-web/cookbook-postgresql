@@ -30,8 +30,8 @@ platforms:
     verifier:
       inputs:
         debian_release: bullseye
-        postgres_version: 14.2-1.pgdg110+1
-        pgbouncer_version: 1.16.1-1.pgdg110+1
+        postgres_version: 14.3-1.pgdg110+1
+        pgbouncer_version: 1.17.0-3.pgdg110+1
 
   - name: debian-buster
     driver_config:
@@ -40,8 +40,8 @@ platforms:
     verifier:
       inputs:
         debian_release: buster
-        postgres_version: 14.2-1.pgdg100+1
-        pgbouncer_version: 1.16.1-1.pgdg100+1
+        postgres_version: 14.3-1.pgdg100+1
+        pgbouncer_version: 1.17.0-3.pgdg100+1
 
 suites:
   - name: default
